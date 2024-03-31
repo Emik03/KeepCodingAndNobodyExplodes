@@ -66,9 +66,12 @@ namespace KeepCoding
             {
                 action.NullCheck("The action cannot be null.")();
             }
-            catch (Exception e) when (when(e))
+            catch (Exception e)
             {
-                caught?.Invoke(e);
+                if (when(e))
+                    caught?.Invoke(e);
+                else
+                    throw;
             }
             finally
             {
@@ -123,9 +126,11 @@ namespace KeepCoding
             {
                 action.NullCheck("The action cannot be null.")();
             }
-            catch (Exception e) when (e is T1 || e is T2)
+            catch (Exception e)
             {
-                caught?.Invoke(e);
+                if (e is T1 || e is T2)
+                    caught?.Invoke(e);
+                else throw;
             }
             finally
             {
@@ -161,9 +166,11 @@ namespace KeepCoding
             {
                 action.NullCheck("The action cannot be null.")();
             }
-            catch (Exception e) when (e is T1 || e is T2 || e is T3)
+            catch (Exception e)
             {
-                caught?.Invoke(e);
+                if (e is T1 || e is T2 || e is T3)
+                    caught?.Invoke(e);
+                else throw;
             }
             finally
             {
@@ -193,9 +200,11 @@ namespace KeepCoding
             {
                 action.NullCheck("The action cannot be null.")();
             }
-            catch (Exception e) when (e is T1 || e is T2 || e is T3 || e is T4)
+            catch (Exception e)
             {
-                caught?.Invoke(e);
+                if (e is T1 || e is T2 || e is T3 || e is T4)
+                    caught?.Invoke(e);
+                else throw;
             }
             finally
             {
@@ -221,9 +230,12 @@ namespace KeepCoding
             {
                 return func.NullCheck("The action cannot be null.")();
             }
-            catch (Exception e) when (when(e))
+            catch (Exception e)
             {
-                return caught.NullCheck("The caught cannot be null.")(e);
+                if (when(e))
+                    return caught.NullCheck("The caught cannot be null.")(e);
+
+                throw;
             }
         };
 #endif
@@ -279,9 +291,12 @@ namespace KeepCoding
             {
                 return func.NullCheck("The action cannot be null.")();
             }
-            catch (Exception e) when (e is T1 || e is T2)
+            catch (Exception e)
             {
-                return caught.NullCheck("The caught cannot be null.")(e);
+                if (e is T1 || e is T2)
+                    return caught.NullCheck("The caught cannot be null.")(e);
+
+                throw;
             }
         };
 #endif
@@ -313,9 +328,12 @@ namespace KeepCoding
             {
                 return func.NullCheck("The action cannot be null.")();
             }
-            catch (Exception e) when (e is T1 || e is T2 || e is T3)
+            catch (Exception e)
             {
-                return caught.NullCheck("The caught cannot be null.")(e);
+                if (e is T1 || e is T2 || e is T3)
+                    return caught.NullCheck("The caught cannot be null.")(e);
+
+                throw;
             }
         };
 
@@ -341,9 +359,12 @@ namespace KeepCoding
             {
                 return func.NullCheck("The action cannot be null.")();
             }
-            catch (Exception e) when (e is T1 || e is T2 || e is T3 || e is T4)
+            catch (Exception e)
             {
-                return caught.NullCheck("The caught cannot be null.")(e);
+                if (e is T1 || e is T2 || e is T3 || e is T4)
+                    return caught.NullCheck("The caught cannot be null.")(e);
+
+                throw;
             }
         };
 
